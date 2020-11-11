@@ -9,9 +9,9 @@ const Main = (props) => {
     const {showHeader, showNav, children, className} = props
 
     return (
-        <View className={`${className} my-container`}>
+        <View className={`${className}`}>
             {showHeader && (<Header/>)}
-                <View>
+                <View className="container-fluid">
                     {children}
                 </View>
             {showNav && (<BottomNav/>)}

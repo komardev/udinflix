@@ -7,15 +7,15 @@ import {
 } from "react-router-dom";
 
 // Redux-Conf
-import { Provider } from 'react-redux';
-import { store } from '../config/redux';
+// import { Provider } from 'react-redux';
+// import { store } from '../config/redux';
 
 // Route App
 import AppRoutes from './AppRoutes';
 
 const App = () => {
   return (
-    <Provider store={store}>
+    // <Provider store={store}>
       <Router>
           <Switch>
               {AppRoutes.map(route => (
@@ -23,7 +23,7 @@ const App = () => {
               ))}
           </Switch>
       </Router>
-    </Provider>
+    // </Provider>
   )
 }
 

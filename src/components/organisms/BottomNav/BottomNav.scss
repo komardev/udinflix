@@ -1,0 +1,42 @@
+.bottom {
+    position: fixed;
+    background-color: #121212;
+    height: 65px;
+    width: 100%;
+    bottom: 0;
+    z-index: 9;
+    max-width: 480px;
+    display: table;
+    table-layout: fixed;
+
+    &__nav {
+        vertical-align: middle;
+        display: table-cell;
+        text-align: center;
+        text-decoration: none;
+        font-size: 10px;
+        color: #727272;
+        transition: 0.6s;
+
+        &:hover {
+            color: #fdfdfd;
+            text-decoration: none;
+            transition: 0.6s;
+        }
+
+        .navigation {
+
+            &__icon {
+                margin: 0 auto;
+                display: block;
+                width: 25px;
+                height: 25px;
+            }
+        }
+
+    }
+
+    &__selected {
+        color: #fdfdfd;
+    }
+}
