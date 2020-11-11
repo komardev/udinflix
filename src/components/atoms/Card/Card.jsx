@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 
+// Style
+import './Card.scss'
+
 // Components
 import View from '../View/View'
 
@@ -9,7 +12,7 @@ const Card = (props) => {
 
     return (
         <>
-            <View className={`${className} card`}>
+            <View className={`${className} card card-set my-3`}>
                {children}
             </View>
         </>

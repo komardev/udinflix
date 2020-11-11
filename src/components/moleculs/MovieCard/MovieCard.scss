@@ -1,0 +1,64 @@
+.movcard {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+
+    .image-movie {
+        width: 90px;
+    }
+
+    .desc {
+        margin: 0 15px;
+
+        p {
+            margin: 0;
+        }
+
+        &__title {
+            font-weight: 600;
+            font-size: 17px;
+        }
+
+        &__date {
+            font-size: 14px;
+            padding-bottom: 5px;
+        }
+
+        &__info {
+            font-size: 14px;
+
+            .type {
+                color: rgb(219, 219, 219);
+            }
+        }
+
+        .type-text {
+            text-transform: capitalize;
+        }
+
+
+
+    }
+
+}
+
+// @media screen and (max-width: 420px) {
+//     .movcard {
+
+//         .desc {
+//             &__title {
+//                 font-size: 13px;
+//             }
+
+//             &__date {
+//                 font-size: 10px;
+//             }
+
+//             &__info {
+//                 font-size: 10px;
+//             }
+
+//         }
+
+//     }
+// }

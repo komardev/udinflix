@@ -9,13 +9,13 @@ import { BsSearch } from "react-icons/bs";
 import { View , Input} from '../../atoms'
 
 const Searchbar = (props) => {
-    const {placeholder, onSubmit, onChange, value} = props
+    const {placeholder, onSubmit, onChange, value, ref} = props
 
     return (
         <form onSubmit={onSubmit}>
             <View className="search">
                 <View className="search__input">
-                    <Input value={value} onChange={onChange} placeholder={placeholder}/>
+                    <Input value={value} onChange={onChange} ref={ref} placeholder={placeholder}/>
                     <BsSearch onClick={onSubmit} className="icon"/>
                 </View>
             </View>
@@ -31,7 +31,8 @@ Searchbar.propTypes = {
     placeholder: PropTypes.string,
     value: PropTypes.string,
     onSubmit: PropTypes.func,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    ref: PropTypes.any
 };
 
 export default Searchbar

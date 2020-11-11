@@ -1,0 +1,27 @@
+.line {
+    margin-top: 30px;
+    height: 2px;
+    background-color: #333333;
+    border: none;
+}
+
+.cardsect {
+    margin-top: 30px;
+}
+
+.find-movie {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 55vh;
+
+    img {
+        width: 80px;
+    }
+
+    h5 {
+        color: #fdfdfd;
+        margin-top: 20px;
+    }
+}
