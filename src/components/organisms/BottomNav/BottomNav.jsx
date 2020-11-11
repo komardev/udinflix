@@ -22,7 +22,7 @@ const BottomNav = () => {
         <NavLink exact to="/favourite" className="bottom__nav" activeClassName="bottom__selected">
             <View className="navigation">
                 <AiFillHeart className="navigation__icon"/>
-                Favourite
+                My Favourite
             </View>
         </NavLink>
     </View>

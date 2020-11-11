@@ -1,12 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 // Components
-import { Main } from '../../components'
+import { Main, Text, Searchbar } from '../../components'
 
 const Home = () => {
+    const [search, setSearch] = useState('')
+
+
+    const alerta = (e) => {
+        e.preventDefault();
+        alert(search)
+    }
+
     return (
         <Main>
-            <h1>Home Page</h1>
+            <Text h5>Search Movie</Text>
+            <Searchbar onChange={(e) => setSearch(e.target.value)} onSubmit={alerta} value={search} placeholder="Search movie by name..." />
         </Main>
     )
 }

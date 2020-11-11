@@ -1,12 +1,12 @@
 import React from 'react'
 
 // Components
-import { Main } from '../../components'
+import { Main, Text } from '../../components'
 
 const Favourite = () => {
     return (
         <Main>
-            <h1>Favourite Page</h1>
+            <Text h5>My Favourite</Text>
         </Main>
     )
 }
