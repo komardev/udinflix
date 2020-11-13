@@ -1,0 +1,29 @@
+.modal {
+    padding-right: 0 12px !important;
+
+    .modal-content {
+        background-color: rgb(27, 27, 27);
+        max-width: 460px;
+        margin: 0 auto;
+
+        .close {
+            span {
+                color: #ffffff;
+            }
+        }
+
+        .modal-header {
+            border-bottom: 1px solid #333333;
+        }
+
+        .modal-footer {
+            border-top: 1px solid #333333;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .modal {
+        padding-right: 0px !important;
+    }
+}

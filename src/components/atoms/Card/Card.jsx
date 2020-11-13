@@ -8,11 +8,11 @@ import './Card.scss'
 import View from '../View/View'
 
 const Card = (props) => {
-    const {className, children} = props 
+    const {className, children, onClick, dataTarget, dataToggle} = props 
 
     return (
         <>
-            <View className={`${className} card card-set my-3`}>
+            <View dataToggle={dataToggle} dataTarget={dataTarget} onClick={onClick} className={`${className} card card-set my-3`}>
                {children}
             </View>
         </>
@@ -25,7 +25,10 @@ Card.defaultProps = {
 
 Card.propTypes = {
     className: PropTypes.string,
-    children: PropTypes.any
+    children: PropTypes.any,
+    onClick: PropTypes.func,
+    dataTarget: PropTypes.string,
+    dataToggle: PropTypes.string
 }
 
 export default Card

@@ -32,33 +32,63 @@
             }
         }
 
+
         .type-text {
             text-transform: capitalize;
         }
-
-
-
     }
-
 }
 
-// @media screen and (max-width: 420px) {
-//     .movcard {
+.favourite {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    text-align: right;
 
-//         .desc {
-//             &__title {
-//                 font-size: 13px;
-//             }
+    &__btn {
+        margin-top: 10px;
+        border: 1px solid #CF1737;
+        background: none;
+        padding: 5px 10px;
+        display: inline-block;
+        border-radius: 25px;
+        font-size: 10px;
+        cursor: pointer;
+        color: #fdfdfd;
+        text-decoration: none;
 
-//             &__date {
-//                 font-size: 10px;
-//             }
+        &:hover {
+            color: #fdfdfd;
+            text-decoration: none;
+        }
+    }
 
-//             &__info {
-//                 font-size: 10px;
-//             }
+    &__add {
+        margin-top: 10px;
+        border: 1px solid #CF1737;
+        background-color: #CF1737;
+        padding: 5px 10px;
+        display: inline-block;
+        border-radius: 25px;
+        font-size: 10px;
+        cursor: pointer;
+        color: #fdfdfd;
+        text-decoration: none;
 
-//         }
+        &:hover {
+            color: #fdfdfd;
+            text-decoration: none;
+        }
+    }
+}
 
-//     }
-// }
+@media screen and (max-width: 420px) {
+    .favourite {
+        position: static;
+        margin-bottom: 0px;
+        margin-right: 0px;
+        text-align: right;
+    }
+}

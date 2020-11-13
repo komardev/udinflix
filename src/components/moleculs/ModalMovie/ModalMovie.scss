@@ -1,0 +1,141 @@
+.headmodal {
+    display: flex;
+    // align-items: center;
+
+    img {
+        width: 90px;
+        min-width: 90px;
+    }
+
+    &__desc {
+        margin-left: 10px;
+
+        p {
+            margin: 0;
+            font-size: 14.5px;
+        }
+
+        .title {
+            margin-bottom: 0px;
+        }
+
+        .year {
+            font-size: 13px;
+        }
+
+        .rating {
+            margin-top: 5px;
+
+            .star {
+                color: rgb(248, 248, 13);
+            }
+        }
+
+        .type {
+            margin-top: 3px;
+            text-transform: capitalize;
+        }
+
+        .lang {
+            margin-top: 3px;
+        }
+    }
+}
+
+.genre {
+
+    &__title {
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    &__text {
+        margin-top: -10px;
+
+        p {
+            font-size: 10px;
+            padding: 3px 10px;
+            border: 1px solid #CF1737;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        p:nth-child(0) {
+            margin-right: 0;
+        }
+    }
+}
+
+.desc {
+    margin-top: 10px;
+
+    &__title {
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    &__text {
+        margin-top: -10px;
+        font-size: 14px;
+    }
+}
+
+
+.placemodel {
+    display: flex;
+    flex-direction: column;
+}
+
+
+@media screen and (max-width: 420px) {
+    .headmodal {
+        display: flex;
+        align-items: center;
+
+        img {
+            width: 90px;
+        }
+
+        &__desc {
+
+            p {
+                margin: 0;
+                font-size: 13px;
+            }
+
+            .title {
+                margin-bottom: 0px;
+                font-size: 15px;
+            }
+
+            .year {
+                font-size: 12px;
+            }
+        }
+    }
+
+    .genre {
+
+        &__title {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        &__text {
+            p {
+                font-size: 9px;
+            }
+        }
+    }
+
+    .desc {
+
+        &__text {
+            margin-top: -10px;
+            font-size: 12px;
+        }
+    }
+
+
+}

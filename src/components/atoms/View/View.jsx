@@ -2,14 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const View = (props) => {
-    const {inline, children, className, id, onClick} = props
+    const {inline, children, className, id, onClick, dataToggle, dataTarget} = props
     return (
         <>
         { inline && (
-            <span className={className} id={id} onClick={onClick}>{children}</span>
+            <span data-toggle={dataToggle} data-target={dataTarget} className={className} id={id} onClick={onClick}>{children}</span>
         )}
         { !inline && (
-            <div className={className} id={id} onClick={onClick}>{children}</div>
+            <div data-toggle={dataToggle} data-target={dataTarget} className={className} id={id} onClick={onClick}>{children}</div>
         )}
         </>
     )
@@ -23,6 +23,8 @@ View.propTypes = {
     id: PropTypes.string,
     inline: PropTypes.bool,
     children: PropTypes.any,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    dataTarget: PropTypes.string,
+    dataToggle: PropTypes.string
 }
 export default View
