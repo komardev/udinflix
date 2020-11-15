@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 // Style
 import './Modals.scss'
@@ -30,5 +31,16 @@ const Modals = (props) => {
         </View>
     )
 }
+
+Modals.defaultProps = {
+    children: ''
+};
+
+Modals.propTypes = {
+    id: PropTypes.string,
+    title: PropTypes.string,
+    children: PropTypes.any
+};
+
 
 export default Modals

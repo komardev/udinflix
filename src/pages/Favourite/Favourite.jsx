@@ -8,14 +8,12 @@ import { Main, Text, View, Image, MovieCard} from '../../components'
 
 const Favourite = () => {
     const [movie, setMovie] = useState([]) 
-    const [load, setLoad] = useState(false)
 
     useEffect(() => {
         getFromStorage()
     }, [])
 
     const getFromStorage = () => {
-        setLoad(false)
         let prevData = JSON.parse(localStorage.getItem('udinflix'))
         let newData = []
         if (!prevData) prevData = []
@@ -31,7 +29,6 @@ const Favourite = () => {
                 })
             }
         });
-        setLoad(true)
         setMovie(newData.reverse())
     }
 
@@ -40,7 +37,7 @@ const Favourite = () => {
           if (movie.length) {
               return(
                   <View className="cardsect">
-                      <MovieCard getData={getFromStorage} load={load} movie={movie} />
+                      <MovieCard getData={getFromStorage} load={true} movie={movie} />
                   </View>
               )
             }else {

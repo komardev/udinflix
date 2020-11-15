@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 
-import axios from 'axios'
+// Redux
+import {useSelector, useDispatch} from 'react-redux'
+import {getSearch} from '../../config/redux'
 
 // Styles & Icons
 import './Home.scss'
@@ -12,12 +14,11 @@ import Clapper from '../../assets/svg/clapperboard.svg'
 import { Main, Text, Searchbar, MovieCard, View, Image} from '../../components'
 
 const Home = () => {
+    const dispatch = useDispatch()
     const [search, setSearch] = useState('')
-    const [load, setLoad] = useState(true)
     const [ready, setReady] = useState(false)
-    const [movie, setMovie] = useState([])
-    const [filter, setFilter] = useState([])
-    const [error, setError] = useState(false)
+    const moviex = useSelector(state => state.Movie)
+ 
 
     useEffect(() => {
         let lastSearch = localStorage.getItem('udinflix-last-search')
@@ -27,84 +28,17 @@ const Home = () => {
         } 
     }, [])
 
-    const fetching = async (last) => {
-        let newSearch = '' 
-        last ? newSearch = last : newSearch =  search
+    const fetching = (last) => {
+        let newSearch = last ? last : search
         setReady(true)
-        setError(false)
-        setLoad(false)
-        try {
-            let listMovie = await axios.get(`http://www.omdbapi.com/?s=${newSearch}&plot=full&apikey=fa6e670f`)
-            setMovie(listMovie.data)
-                if (listMovie.data.Response === 'True') setData(listMovie.data)
-        } catch (err) {
-            if(err) setError(true)
-            console.log(err);
-        }
-        setLoad(true)
+        dispatch(getSearch(newSearch))
     } 
-
 
     const callFetch = async (e) => {
         e.preventDefault();
-        localStorage.setItem('udinflix-last-search', search)
         fetching()
+        localStorage.setItem('udinflix-last-search', search)
     }
-
-    const setData = (data) => {
-        let prevData = JSON.parse(localStorage.getItem('udinflix'))
-        let newData = []
-
-        if (!prevData) prevData = []
-        if (!data) data = movie 
-
-        data.Search.forEach(val => {
-            let check = prevData.some(item => item.imdbID === val.imdbID); 
-                newData.push({
-                    Poster: val.Poster,
-                    Type: val.Type,
-                    Title: val.Title,
-                    Year: val.Year,
-                    imdbID: val.imdbID,
-                    Favourite: check ? true : false
-                })
-        });
-        setFilter(newData)
-    }
-
-    const renderMovie = () => {
-        if(!ready){
-            return (
-                 <View className="find-movie">
-                    <Image src={Popcorn} />
-                    <Text h5>Let's find a good movie!</Text>
-                </View> 
-            )
-        } else if (movie.Response === 'True' || load === false) {
-            return(
-                    <View className="cardsect">
-                        <MovieCard getData={setData} load={load} movie={filter} />
-                    </View>
-            )
-        } else if (error) {
-            return(
-                <View className="find-movie">
-                    <Image src={Warning} />
-                    <Text h5>Sorry theres is an error!</Text>
-                    <View onClick={callFetch}>
-                        <Text className="try" span>Try Again?</Text>
-                    </View>
-                </View> 
-            )
-        } else {
-            return(
-                <View className="find-movie">
-                    <Image src={Clapper} />
-                    <Text h5>Sorry movie not found!</Text>
-                </View> 
-            )
-        }
-    } 
 
     return (
          <Main>
@@ -112,7 +46,35 @@ const Home = () => {
             <Searchbar onChange={(e)=> setSearch(e.target.value)} onSubmit={callFetch} value={search} placeholder="Search movie
                 by name..." />
                 <hr className="line" />
-                {renderMovie()}
+                {moviex.list && (
+                        <View className="cardsect">
+                            <MovieCard load={moviex.ready} movie={moviex.list} />
+                        </View>
+                )}
+
+                {!ready && (
+                    <View className="find-movie">
+                        <Image src={Popcorn} />
+                        <Text h5>Let's find a good movie!</Text>
+                    </View> 
+                )}
+
+                {moviex.error.Response === 'False' && (
+                    <View className="find-movie">
+                        <Image src={Clapper} />
+                        <Text h5>Sorry movie not found!</Text>
+                    </View> 
+                )}
+
+                {moviex.error && (
+                    <View className="find-movie">
+                        <Image src={Warning} />
+                        <Text h5>Sorry there is an error!</Text>
+                        <View onClick={callFetch}>
+                            <Text className="try" span>Try Again?</Text>
+                        </View>
+                    </View> 
+                )}
          </Main>
     )
 }

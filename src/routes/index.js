@@ -2,20 +2,19 @@ import React from 'react'
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
-  Redirect
+  Switch
 } from "react-router-dom";
 
 // Redux-Conf
-// import { Provider } from 'react-redux';
-// import { store } from '../config/redux';
+import { Provider } from 'react-redux';
+import { store } from '../config/redux';
 
 // Route App
 import AppRoutes from './AppRoutes';
 
 const App = () => {
-  return (
-    // <Provider store={store}>
+return (
+    <Provider store={store}>
       <Router>
           <Switch>
               {AppRoutes.map(route => (
@@ -23,7 +22,7 @@ const App = () => {
               ))}
           </Switch>
       </Router>
-    // </Provider>
+    </Provider>
   )
 }
 

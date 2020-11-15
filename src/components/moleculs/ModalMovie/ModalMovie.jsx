@@ -3,8 +3,9 @@ import ReactPlaceholder from 'react-placeholder';
 import PropTypes from 'prop-types';
 
 // Style & Icon
-import { MdStar, MdMovie, MdPublic } from "react-icons/md";
 import './ModalMovie.scss'
+import { MdStar, MdMovie, MdPublic } from "react-icons/md";
+import Warning from '../../../assets/svg/warning.svg'
 import {TextBlock, RectShape} from 'react-placeholder/lib/placeholders';
 
 // Components
@@ -12,15 +13,7 @@ import {View, Modals, Image, Text} from '../../atoms'
 
 
 const ModalMovie = (props) => {
-    const {id, film, loading} = props
-
-    const renderGenre = () => {
-        return film.Genre.split(",").map((val, idx) => {
-            return(
-                <Text key={idx} p>{val}</Text>
-            )
-        })
-    }
+    const {id, film, getData} = props
 
     const placeholder = (
         <>
@@ -38,45 +31,60 @@ const ModalMovie = (props) => {
     )
 
     return (
-         <Modals title={!loading ? 'Loading...' : film.Title } id={id}>
-            <ReactPlaceholder customPlaceholder={placeholder} ready={loading} showLoadingAnimation>
-              {loading && (
-                  <>
+         <Modals title={film.detail.Title ? film.detail.Title : '. . . .' } id={id}>
+            <ReactPlaceholder customPlaceholder={placeholder} ready={film.ready} showLoadingAnimation>
+            {film.error && film.ready && (
+                   <View className="find-movie">
+                        <Image src={Warning} />
+                        <Text h5>Sorry theres is an error!</Text>
+                        <View onClick={getData}>
+                            <Text className="try" span>Try Again?</Text>
+                        </View>
+                    </View> 
+              )}
+            {film.ready && !film.error && (
+                <>
                     <View className="headmodal">
-                        <Image src={film.Poster}/>
+                        <Image src={film.detail.Poster}/>
                         <View className="headmodal__desc">
-                            <Text className="title" h5>{film.Title}</Text>
-                            <Text className="year" p>Year : {film.Year}</Text>
-                            <Text className="rating" p><MdStar className="star"/>&nbsp;{film.imdbRating}</Text>
-                            <Text className="type" p><MdMovie className="type__icon"/>&nbsp;{film.Type}</Text>
-                            <Text className="lang" p><MdPublic className="lang__icon"/>&nbsp;{film.Language}</Text>
+                            <Text className="title" h5>{film.detail.Title}</Text>
+                            <Text className="year" p>Year : {film.detail.Year}</Text>
+                            <Text className="rating" p><MdStar className="star"/>&nbsp;{film.detail.imdbRating}</Text>
+                            <Text className="type" p><MdMovie className="type__icon"/>&nbsp;{film.detail.Type}</Text>
+                            <Text className="lang" p><MdPublic className="lang__icon"/>&nbsp;{film.detail.Language}</Text>
                         </View>
                     </View>
                     <View className="descmodal mt-3">
                         <View className="genre">
                             <Text className="genre__title" p>Genre</Text>
                             <View className="genre__text">
-                                {renderGenre()}
+                                {
+                                    film.detail.Genre.split(",").map((val, idx) => {
+                                        return(
+                                            <Text key={idx} p>{val}</Text>
+                                        )
+                                    })
+                                }
                             </View>
                         </View>
                         <View className="desc">
                             <Text className="desc__title" p>Description</Text>
                             <View className="desc__text">
-                                {film.Plot}
+                                {film.detail.Plot}
                             </View>
                         </View>
                     </View>
                 </>
-              )}
+            )}
             </ReactPlaceholder>
         </Modals>
-    )
+    )   
 }
 
 ModalMovie.propTypes = {
     id: PropTypes.string,
     film: PropTypes.any,
-    loading: PropTypes.bool
+    getData: PropTypes.func,
 }
 
 

@@ -7,7 +7,7 @@ This is a simple movie searcher build with [React JS](https://reactjs.org) and [
 > Using Atomic Design as design pattern for reusability and easy updates.
 
 ## Live Demo
-you can check out udinflix demo [here!](none) hosted on [netlify](http://netlify.com)
+you can check out udinflix demo [here!](https://udinflix.netlify.app/) hosted on [netlify](https://netlify.com)
 
 ## Installation
 ### Clone Repo
