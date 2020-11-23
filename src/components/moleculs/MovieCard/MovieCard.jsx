@@ -102,7 +102,7 @@ const MovieCard = (props) => {
                 {load === true  && (
                     filterMovie.map((val, idx) => {
                         return (
-                            <Card key={idx}>
+                            <Card className="card-movie" key={idx}>
                                 <View className="movcard align-items-center" dataToggle="modal" dataTarget="#movieModal" onClick={() => setTitle(val.Title)}>
                                     <View>
                                         <Image className="image-movie" src={val.Poster}/>

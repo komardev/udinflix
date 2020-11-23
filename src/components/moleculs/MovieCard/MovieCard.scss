@@ -1,40 +1,47 @@
-.movcard {
-    display: flex;
-    flex-direction: row;
-    cursor: pointer;
+.card-movie {
+    position: relative;
+    display: block;
+    animation: fadeLeft 0.5s linear;
+    animation-fill-mode: both;
 
-    .image-movie {
-        width: 90px;
-    }
+    .movcard {
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
 
-    .desc {
-        margin: 0 15px;
-
-        p {
-            margin: 0;
+        .image-movie {
+            width: 90px;
         }
 
-        &__title {
-            font-weight: 600;
-            font-size: 17px;
-        }
+        .desc {
+            margin: 0 15px;
 
-        &__date {
-            font-size: 14px;
-            padding-bottom: 5px;
-        }
-
-        &__info {
-            font-size: 14px;
-
-            .type {
-                color: rgb(219, 219, 219);
+            p {
+                margin: 0;
             }
-        }
+
+            &__title {
+                font-weight: 600;
+                font-size: 17px;
+            }
+
+            &__date {
+                font-size: 14px;
+                padding-bottom: 5px;
+            }
+
+            &__info {
+                font-size: 14px;
+
+                .type {
+                    color: rgb(219, 219, 219);
+                }
+            }
 
 
-        .type-text {
-            text-transform: capitalize;
+            .type-text {
+                text-transform: capitalize;
+            }
         }
     }
 }
@@ -58,6 +65,8 @@
         cursor: pointer;
         color: #fdfdfd;
         text-decoration: none;
+        animation: zoom 0.5s linear;
+        animation-fill-mode: both;
 
         &:hover {
             color: #fdfdfd;
@@ -76,6 +85,8 @@
         cursor: pointer;
         color: #fdfdfd;
         text-decoration: none;
+        animation: zoom 0.5s linear;
+        animation-fill-mode: both;
 
         &:hover {
             color: #fdfdfd;
@@ -83,6 +94,47 @@
         }
     }
 }
+
+@for $i from 1 through 10 {
+    .card-movie:nth-child(#{$i}) {
+        animation-delay: .35s * $i;
+    }
+}
+
+@keyframes fadeLeft {
+    0% {
+        opacity: 0;
+        left: 100px;
+    }
+
+    75% {
+        opacity: 0.5;
+        left: 0px;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes zoom {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    75% {
+        opacity: 0.5;
+        transform: scale(0.90);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
 
 @media screen and (max-width: 420px) {
     .favourite {
